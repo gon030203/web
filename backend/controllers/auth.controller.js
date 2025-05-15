@@ -68,3 +68,11 @@ exports.logout = (req, res) => {
     res.status(200).json({ message: 'Đăng xuất thành công' });
   });
 };
+
+// auth.controller.js
+exports.isAuthenticated = (req, res, next) => {
+  if (!req.session.userId) {
+    return res.status(401).json({ message: "Vui lòng đăng nhập" });
+  }
+  next();
+};
